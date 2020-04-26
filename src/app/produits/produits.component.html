@@ -1,0 +1,32 @@
+<p class="text-center">Ajouter Produit</p>
+<form class="text-center" #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+  <div class="col-md-10 offset-md-1">
+    <div class="form-group">
+      <input type="text" class="form-control form-group" placeholder="Designation"  minlength="5" maxlength="20" pattern=".*[ ].*" name="designation" [(ngModel)]="des" #designation="ngModel" required>
+      <p class="text-danger text-left"> ce champ est obligatoire</p>
+      <input type="text" class="form-control form-group" placeholder="Prix" pattern="[0-9]+(\.[0-9][0-9]?)?"  name="prix" [(ngModel)]="price" #prix="ngModel" required>
+      <p class="text-danger text-left"> ce champ est obligatoire</p>
+      <input type="submit" class="btn btn-success form-control form-group" [disabled]="prix.invalid || designation.invalid" value="Ajouter">
+    </div>
+    <!--<p> designation : {{designation.invalid}} <br>
+        price : {{prix.invalid}}
+      {{myForm.value | json}}{{prix.invalid&&designation.invalid}}</p>-->
+  </div>
+</form>
+<div class="container form-group">
+    <table border="1" style="border: aliceblue">
+      <thead>
+      <tr>
+        <th class="col-md-6">Designation</th>
+        <th class="col-md-6">Prix</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{p.designation}}</td>
+
+        <td>{{p.price}}</td>
+      </tr>
+      </tbody>
+    </table>
+</div>
